@@ -5,11 +5,12 @@ const router = express.Router();
 
 //internal imports
 const { getLogin } = require("../controller/loginController");
+const decorateHtmlResponse = require("../middleware/common/decorateHtmlResponse")
 
 
 
 
 //login page
-router.get("/", getLogin);
+router.get("/", decorateHtmlResponse("Login"), getLogin);
 
 module.exports = router;
