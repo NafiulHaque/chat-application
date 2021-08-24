@@ -16,9 +16,9 @@ function avatarUpload(req, res, next) {
                 errors: {
                     avater: {
                         msg: err.message,
-                    }
-                }
-            })
+                    },
+                },
+            });
         } else {
             next();
         }

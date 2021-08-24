@@ -1,4 +1,7 @@
+// external imports
 const multer = require("multer");
+const createError = require("http-errors");
+const path = require("path");
 
 function uploader(
     subfolder_path,
@@ -20,7 +23,7 @@ function uploader(
                 file.originalname
                     .replace(fileExt, "")
                     .toLowerCase()
-                    .split()
+                    .split(" ")
                     .join("-") +
                 "-" +
                 Date.now();
@@ -41,8 +44,8 @@ function uploader(
             } else {
                 cb(createError(error_msg));
             }
-        }
-    })
+        },
+    });
 
 
 

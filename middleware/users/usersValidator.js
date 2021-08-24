@@ -1,7 +1,12 @@
+//external imports
+
 const { check, validationResult } = require("express-validator");
 const createError = require("http-errors");
 const path = require("path");
 const { unlink } = require("fs");
+
+//internal imports
+const User = require("../../models/People");
 
 //add user
 const addUserValidators = [
@@ -23,7 +28,7 @@ const addUserValidators = [
 
                 }
             } catch (err) {
-                throw createHttpError(err.message);
+                throw createError(err.message);
 
             }
         }),
@@ -39,7 +44,7 @@ const addUserValidators = [
                     throw createError("Mobile already is use!");
                 }
             } catch (err) {
-                throw createHttpError(err.message);
+                throw createError(err.message);
             }
         }),
     check("password")
@@ -64,16 +69,16 @@ const addUserValidationHandler = function (req, res, next) {
                 (err) => {
                     if (err) console.log(err);
                 }
-            )
+            );
         }
         // response the err
         res.status(500).json({
             errors: mappedErrors,
-        })
+        });
     }
-}
+};
 
 module.exports = {
     addUserValidators,
     addUserValidationHandler,
-}
+};

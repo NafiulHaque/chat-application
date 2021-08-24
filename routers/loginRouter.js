@@ -1,13 +1,13 @@
 //external imports
 const express = require("express");
 
-const router = express.Router();
+
 
 //internal imports
 const { getLogin } = require("../controller/loginController");
 const decorateHtmlResponse = require("../middleware/common/decorateHtmlResponse")
 
-
+const router = express.Router();
 
 
 //login page
