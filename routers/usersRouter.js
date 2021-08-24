@@ -5,7 +5,7 @@ const { check } = require("express-validator");
 const router = express.Router();
 
 //internal imports
-const { getUsers, addUser } = require("../controller/usersController");
+const { getUsers, addUser, removeUser } = require("../controller/usersController");
 const decorateHtmlResponse = require("../middleware/common/decorateHtmlResponse")
 const avatarUpload = require("../middleware/users/avatarUploads");
 const {
@@ -28,6 +28,8 @@ router.post(
     addUser,
 );
 
+//remove user
+router.delete("/:id", removeUser);
 
 
 
