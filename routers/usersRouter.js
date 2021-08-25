@@ -6,6 +6,7 @@ const router = express.Router();
 
 //internal imports
 const { getUsers, addUser, removeUser } = require("../controller/usersController");
+const { checkLogin } = require("../middleware/common/checkLogin");
 const decorateHtmlResponse = require("../middleware/common/decorateHtmlResponse")
 const avatarUpload = require("../middleware/users/avatarUploads");
 const {
@@ -17,11 +18,12 @@ const {
 
 
 //User page
-router.get("/", decorateHtmlResponse("Users"), getUsers);
+router.get("/", decorateHtmlResponse("Users"), checkLogin, getUsers);
 
 //add user
 router.post(
     "/",
+    checkLogin,
     avatarUpload,
     addUserValidators,
     addUserValidationHandler,
